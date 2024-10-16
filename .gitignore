@@ -36,7 +36,6 @@
        coverage/
        jest/
        *.test.js
-       *.test.ts
        *.test.tsx
 
        # Прочее
