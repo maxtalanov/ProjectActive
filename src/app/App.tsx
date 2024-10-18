@@ -3,7 +3,7 @@ import {Link, Route, Routes} from 'react-router-dom';
 import {AboutPageAsync} from "pages/AboutPage/AboutPage.async";
 import {MainPageAsync} from "pages/MainPage/MainPage.async";
 import {classNames} from "helpers/classNames/classNames";
-import {useTheme} from "./providers/ThemeProvider/lib/useTheme";
+import {useTheme} from "app/providers/ThemeProvider";
 import './styles/index.scss';
 
 const App = () => {
