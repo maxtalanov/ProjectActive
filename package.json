@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint-plugin-i18next": "^5.1.2",
     "stylelint": "^14.5.3",
     "stylelint-config-standard-scss": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
