@@ -10,12 +10,14 @@
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:scss": "npx stylelint \"**/*.scss\"",
-    "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix"
+    "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
+    "unit": "jest --config  ./config/jest/jest.config.ts "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^27.5.1",
     "eslint-plugin-i18next": "^5.1.2",
     "stylelint": "^14.5.3",
     "stylelint-config-standard-scss": "^3.0.0",
