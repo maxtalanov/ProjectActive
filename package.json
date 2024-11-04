@@ -17,6 +17,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
     "jest": "^27.5.1",
     "eslint-plugin-i18next": "^5.1.2",
     "stylelint": "^14.5.3",
