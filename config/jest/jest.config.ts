@@ -7,20 +7,20 @@ export default {
     testEnvironment: 'jsdom',
     clearMocks: true,
     coveragePathIgnorePatterns: [
-        "/node_modules/"
+        '/node_modules/',
     ],
     moduleDirectories: [
-        "node_modules"
+        'node_modules',
     ],
     moduleFileExtensions: [
-        "js",
-        "jsx",
-        "ts",
-        "tsx",
-        "json",
-        "node"
+        'js',
+        'jsx',
+        'ts',
+        'tsx',
+        'json',
+        'node',
     ],
-    rootDir: "../../",
+    rootDir: '../../',
     testMatch: [
         '<rootDir>src/**/*(*.)@(spec|test).[t,j]s?(x)',
     ],
@@ -47,7 +47,6 @@ export default {
     // coverageDirectory: undefined,
 
     // An array of regexp pattern strings used to skip coverage collection
-
 
     // Indicates which provider should be used to instrument code for coverage
     // coverageProvider: "babel",
