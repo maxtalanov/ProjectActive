@@ -37,6 +37,8 @@
        jest/
        *.test.js
        *.test.tsx
+       /.loki/report.html
+       /.loki/report.json
 
        # Прочее
        *.log
