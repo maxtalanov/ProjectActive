@@ -6,11 +6,11 @@ import {
     Button, ButtonSize, ThemeButton,
 } from 'shared/ui/Button/Button';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { t } from 'i18next';
+
 import { RoutePath } from 'shared/config/routerConfig/routeConfig';
-// eslint-disable-next-line import/no-duplicates
 import MainIcon from 'shared/assets/icons/main-20-20.svg';
 import AboutIcon from 'shared/assets/icons/about-20-20.svg';
+import { useTranslation } from 'react-i18next';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -19,6 +19,7 @@ interface SidebarProps {
 
 export const Sidebar = ({ className }: SidebarProps) => {
     const [collapsed, setCollapsed] = useState(false);
+    const { t } = useTranslation();
 
     const onToggle = () => {
         setCollapsed((prev) => !prev);
@@ -26,9 +27,11 @@ export const Sidebar = ({ className }: SidebarProps) => {
 
     return (
         <div
+            data-testid="sidebar"
             className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
         >
             <Button
+                data-testid="sidebar-toggle"
                 type="button"
                 onClick={onToggle}
                 className={cls.collapseBtn}
