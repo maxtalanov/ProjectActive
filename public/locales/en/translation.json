@@ -7,5 +7,8 @@
   "Короткий язык": "En",
   "Страница не найдена": "Not found page",
   "throw Error": "Error emitter",
-  "Войти": "Sign in"
+  "Войти": "Sign in",
+  "Уменьшить": "Decrement",
+  "Увеличить": "Increment",
+  "Счетчик": "Counter"
 }
