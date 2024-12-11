@@ -6,6 +6,9 @@
 import path from 'path';
 
 export default {
+    globals: {
+        __IS_DEV__: true,
+    },
     clearMocks: true,
     testEnvironment: 'jsdom',
     coveragePathIgnorePatterns: [
@@ -26,7 +29,6 @@ export default {
         '<rootDir>src',
     ],
     testMatch: [
-        // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
     ],
     rootDir: '../../',
