@@ -1,29 +1,31 @@
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import {
     ComponentRender,
-} from 'shared/lib/tests/componentRender/componentRender';
+} from 'shared/lib/tests/ComponentRender/ComponentRender';
+import userEvent from '@testing-library/user-event';
 import { Counter } from './Counter';
 
-describe('Counter Component', () => {
-    test('Рендер', () => {
+describe('Counter', () => {
+    test('test render', () => {
         ComponentRender(<Counter />, {
-            initalState: { counter: { value: 10 } },
+            initialState: { counter: { value: 10 } },
         });
         expect(screen.getByTestId('value-title')).toHaveTextContent('10');
     });
-    test('Инкрементируем', () => {
+
+    test('increment', async () => {
         ComponentRender(<Counter />, {
-            initalState: { counter: { value: 10 } },
+            initialState: { counter: { value: 10 } },
         });
-        userEvent.click(screen.getByTestId('increment-btn'));
+        await userEvent.click(screen.getByTestId('increment-btn'));
         expect(screen.getByTestId('value-title')).toHaveTextContent('11');
     });
-    test('Декрементируем', () => {
+
+    test('decrement', async () => {
         ComponentRender(<Counter />, {
-            initalState: { counter: { value: 10 } },
+            initialState: { counter: { value: 10 } },
         });
-        userEvent.click(screen.getByTestId('decrement-btn'));
+        await userEvent.click(screen.getByTestId('decrement-btn'));
         expect(screen.getByTestId('value-title')).toHaveTextContent('9');
     });
 });
