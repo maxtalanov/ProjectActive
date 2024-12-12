@@ -11,7 +11,7 @@ export interface ComponentRenderOptions {
     initialState?: DeepPartial<StateSchema>;
 }
 
-export function ComponentRender(component: ReactNode, options: ComponentRenderOptions = {}) {
+export function componentRender(component: ReactNode, options: ComponentRenderOptions = {}) {
     const {
         route = '/',
         initialState,
