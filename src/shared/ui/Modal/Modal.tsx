@@ -7,22 +7,25 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import cls from './Modal.module.scss';
 
 interface ModalProps {
-    className?: string,
-    children?: ReactNode,
-    isOpen?: boolean,
-    onClose?: () => void,
+    className?: string;
+    children?: ReactNode;
+    isOpen?: boolean;
+    onClose?: () => void;
+    lazy?: boolean;
 }
 
 export const Modal = (props: ModalProps) => {
     const {
-        className, children, isOpen, onClose,
+        className, children, isOpen, onClose, lazy,
     } = props;
 
     const { theme } = useTheme();
-    const [isClosing, setIsClosing] = useState(false);
+    const [isClosing, setIsClosing] = useState<boolean>(false);
+    const [isMponted, setIsMounted] = useState<boolean>(false);
     const timeRef = useRef<ReturnType<typeof setTimeout>>();
 
     const ANIMATION_DELAY = 300;
+
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
@@ -46,6 +49,12 @@ export const Modal = (props: ModalProps) => {
 
     useEffect(() => {
         if (isOpen) {
+            setIsMounted(true);
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
+        if (isOpen) {
             window.addEventListener('keydown', onKeyDown);
         }
 
@@ -58,6 +67,10 @@ export const Modal = (props: ModalProps) => {
     const onContentClick = (event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
     };
+
+    if (lazy && !isMponted) {
+        return null;
+    }
 
     return (
         <Portal>
