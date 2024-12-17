@@ -10,5 +10,6 @@
   "Войти": "Sign in",
   "Уменьшить": "Decrement",
   "Увеличить": "Increment",
-  "Счетчик": "Counter"
+  "Введите пароль": "Enter password",
+  "Введите login": "Enter login"
 }
