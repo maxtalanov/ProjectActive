@@ -5,7 +5,7 @@ import { Input } from 'shared/ui/Input/Input';
 import { useDispatch, useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { getLoginState } from 'features/AuthByUcerName/model/selectors/getLoginState/getLoginState';
+import { getLoginState } from 'features/AuthByUsername/model/selectors/getLoginState/getLoginState';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { loginActions } from '../../model/slice/loginSlice';
 
