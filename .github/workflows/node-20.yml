@@ -6,7 +6,7 @@ on:
     branches: [master]
 
 jobs:
-  pipeline-node-17:
+  pipeline-node-20:
     runs-on: ubuntu-latest
     strategy:
       matrix:
