@@ -23,6 +23,12 @@ const Template: ComponentStory<typeof LoginForm> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {};
 Primary.decorators = [StoreDecorator({
+    user: {
+        authData: {
+            id: '1',
+            username: 'username',
+        },
+    },
     loginForm: {
         username: 'login',
         password: 'password',

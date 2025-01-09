@@ -3,6 +3,7 @@ import {
     ThemeDecorator,
 } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { LoginModal } from './LoginModal';
 
 export default {
@@ -21,8 +22,19 @@ export const Primary = Template.bind({});
 Primary.args = {
     isOpen: true,
 };
+Primary.decorators = [StoreDecorator({
+    loginForm: {
+        username: '',
+        password: '',
+    },
+})];
 export const PrimaryDark = Template.bind({});
 PrimaryDark.args = {
     isOpen: true,
 };
-PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];
+PrimaryDark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({
+    loginForm: {
+        username: '',
+        password: '',
+    },
+})];
