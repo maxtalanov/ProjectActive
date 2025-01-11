@@ -1,18 +1,17 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { useDispatch, useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { getLoginState } from '../../../../features/AuthByUsername/model/selectors/getLoginState/getLoginState';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { loginActions } from '../../model/slice/loginSlice';
-
 import cls from './LoginForm.module.scss';
+import { getLoginState } from '../../model/selectors/getLoginState/getLoginState';
 
 interface LoginFormProps {
-    className?: string,
+    className?: string;
 }
 
 export const LoginForm = memo(({ className }: LoginFormProps) => {
@@ -37,13 +36,12 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>
             <Text title={t('Форма авторизации')} />
-            {error && <Text text={error} theme={TextTheme.ERROR} /> }
-
+            {error && <Text text={t('Вы ввели неверный логин или пароль')} theme={TextTheme.ERROR} />}
             <Input
-                autoFocus
+                autofocus
                 type="text"
                 className={cls.input}
-                placeholder={t('Введите логин')}
+                placeholder={t('Введите username')}
                 onChange={onChangeUsername}
                 value={username}
             />
@@ -55,8 +53,8 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
                 value={password}
             />
             <Button
-                className={cls.LoginBtn}
-                theme={ThemeButton.OUTLINE}
+                theme={ButtonTheme.OUTLINE}
+                className={cls.loginBtn}
                 onClick={onLoginClick}
                 disabled={isLoading}
             >

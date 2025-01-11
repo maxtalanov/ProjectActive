@@ -1,3 +1,4 @@
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import {
     ThemeDecorator,
@@ -13,7 +14,9 @@ export default {
     },
 } as ComponentMeta<typeof NotFoundPage>;
 
-const Template: ComponentStory<typeof NotFoundPage> = () => <NotFoundPage />;
+const Template: ComponentStory<typeof NotFoundPage> = (args) => (
+    <NotFoundPage {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {};

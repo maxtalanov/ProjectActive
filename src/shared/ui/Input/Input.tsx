@@ -1,10 +1,10 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import {
-    ChangeEvent, InputHTMLAttributes, memo, useEffect, useRef, useState,
+import React, {
+    InputHTMLAttributes, memo, useEffect, useRef, useState,
 } from 'react';
 import cls from './Input.module.scss';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
 
 interface InputProps extends HTMLInputProps {
     className?: string;
@@ -23,10 +23,9 @@ export const Input = memo((props: InputProps) => {
         autofocus,
         ...otherProps
     } = props;
-
     const ref = useRef<HTMLInputElement>(null);
-    const [isFocused, setIsFocused] = useState<boolean>(false);
-    const [caretPosition, setCaretPosition] = useState<number>(0);
+    const [isFocused, setIsFocused] = useState(false);
+    const [caretPosition, setCaretPosition] = useState(0);
 
     useEffect(() => {
         if (autofocus) {
@@ -35,7 +34,7 @@ export const Input = memo((props: InputProps) => {
         }
     }, [autofocus]);
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
         setCaretPosition(e.target.value.length);
     };
@@ -62,10 +61,10 @@ export const Input = memo((props: InputProps) => {
             <div className={cls.caretWrapper}>
                 <input
                     ref={ref}
-                    className={cls.input}
                     type={type}
                     value={value}
                     onChange={onChangeHandler}
+                    className={cls.input}
                     onFocus={onFocus}
                     onBlur={onBlur}
                     onSelect={onSelect}

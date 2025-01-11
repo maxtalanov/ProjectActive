@@ -1,20 +1,18 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 
 describe('classNames', () => {
-    test('Только с первым параметром', () => {
+    test('with only first param', () => {
         expect(classNames('someClass')).toBe('someClass');
     });
 
-    test('С доп классами', () => {
+    test('with additional class', () => {
         const expected = 'someClass class1 class2';
-
         expect(classNames('someClass', {}, ['class1', 'class2']))
             .toBe(expected);
     });
 
-    test('С модификатором', () => {
+    test('with mods', () => {
         const expected = 'someClass class1 class2 hovered scrollable';
-
         expect(classNames(
             'someClass',
             { hovered: true, scrollable: true },
@@ -22,9 +20,8 @@ describe('classNames', () => {
         )).toBe(expected);
     });
 
-    test('С модификатором false', () => {
+    test('with mods false', () => {
         const expected = 'someClass class1 class2 hovered';
-
         expect(classNames(
             'someClass',
             { hovered: true, scrollable: false },
@@ -32,9 +29,8 @@ describe('classNames', () => {
         )).toBe(expected);
     });
 
-    test('С модификатором undefined', () => {
+    test('with mods undefined', () => {
         const expected = 'someClass class1 class2 hovered';
-
         expect(classNames(
             'someClass',
             { hovered: true, scrollable: undefined },

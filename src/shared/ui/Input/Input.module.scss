@@ -6,22 +6,22 @@
     margin-right: 5px;
 }
 
-.caretWrapper {
-    flex-grow: 1;
-    position: relative;
-}
-
 .input {
     background: transparent;
-    color: transparent;
     border: none;
     outline: none;
     width: 100%;
+    color: transparent;
     text-shadow: 0 0 0 var(--primary-color);
 
     &:focus {
         outline: none;
     }
+}
+
+.caretWrapper {
+    flex-grow: 1;
+    position: relative;
 }
 
 .caret {
@@ -31,12 +31,12 @@
     bottom: 0;
     left: 0;
     position: absolute;
-    animation: blink 0.8s forwards infinite;
+    animation: blink 0.7s forwards infinite;
 }
 
 @keyframes blink {
     0% {
-        opacity: 1;
+        opacity: 0;
     }
 
     50% {
@@ -44,6 +44,6 @@
     }
 
     100% {
-        opacity: 0;
+        opacity: 1;
     }
 }

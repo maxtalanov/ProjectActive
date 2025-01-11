@@ -1,4 +1,5 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import {
     ThemeDecorator,
 } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -6,7 +7,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { ErrorPage } from './ErrorPage';
 
 export default {
-    title: 'Widgets/ErrorPage',
+    title: 'widget/ErrorPage',
     component: ErrorPage,
     argTypes: {
         backgroundColor: { control: 'color' },

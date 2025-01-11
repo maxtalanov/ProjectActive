@@ -1,3 +1,4 @@
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import {
     ThemeDecorator,
@@ -10,6 +11,9 @@ export default {
     component: Loader,
     argTypes: {
         backgroundColor: { control: 'color' },
+    },
+    args: {
+        to: '/',
     },
 } as ComponentMeta<typeof Loader>;
 

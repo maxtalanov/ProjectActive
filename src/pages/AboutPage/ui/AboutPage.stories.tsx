@@ -1,3 +1,4 @@
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import {
     ThemeDecorator,
@@ -13,7 +14,9 @@ export default {
     },
 } as ComponentMeta<typeof AboutPage>;
 
-const Template: ComponentStory<typeof AboutPage> = () => <AboutPage />;
+const Template: ComponentStory<typeof AboutPage> = (args) => (
+    <AboutPage {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {};

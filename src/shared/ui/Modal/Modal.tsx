@@ -14,38 +14,21 @@ interface ModalProps {
     lazy?: boolean;
 }
 
+const ANIMATION_DELAY = 300;
+
 export const Modal = (props: ModalProps) => {
     const {
-        className, children, isOpen, onClose, lazy,
+        className,
+        children,
+        isOpen,
+        onClose,
+        lazy,
     } = props;
 
+    const [isClosing, setIsClosing] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
+    const timerRef = useRef<ReturnType<typeof setTimeout>>();
     const { theme } = useTheme();
-    const [isClosing, setIsClosing] = useState<boolean>(false);
-    const [isMponted, setIsMounted] = useState<boolean>(false);
-    const timeRef = useRef<ReturnType<typeof setTimeout>>();
-
-    const ANIMATION_DELAY = 300;
-
-    const mods: Record<string, boolean> = {
-        [cls.opened]: isOpen,
-        [cls.isClosing]: isClosing,
-    };
-
-    const closeHandler = useCallback(() => {
-        if (onClose) {
-            setIsClosing(true);
-            timeRef.current = setTimeout(() => {
-                onClose();
-                setIsClosing(false);
-            }, ANIMATION_DELAY);
-        }
-    }, [onClose]);
-
-    const onKeyDown = useCallback((event: KeyboardEvent) => {
-        if (event.key === 'Escape') {
-            closeHandler();
-        }
-    }, [closeHandler]);
 
     useEffect(() => {
         if (isOpen) {
@@ -53,22 +36,44 @@ export const Modal = (props: ModalProps) => {
         }
     }, [isOpen]);
 
+    const closeHandler = useCallback(() => {
+        if (onClose) {
+            setIsClosing(true);
+            timerRef.current = setTimeout(() => {
+                onClose();
+                setIsClosing(false);
+            }, ANIMATION_DELAY);
+        }
+    }, [onClose]);
+
+    // Новые ссылки!!!
+    const onKeyDown = useCallback((e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+            closeHandler();
+        }
+    }, [closeHandler]);
+
+    const onContentClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+    };
+
     useEffect(() => {
         if (isOpen) {
             window.addEventListener('keydown', onKeyDown);
         }
 
         return () => {
-            clearTimeout(timeRef.current);
+            clearTimeout(timerRef.current);
             window.removeEventListener('keydown', onKeyDown);
         };
     }, [isOpen, onKeyDown]);
 
-    const onContentClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        event.stopPropagation();
+    const mods: Record<string, boolean> = {
+        [cls.opened]: isOpen,
+        [cls.isClosing]: isClosing,
     };
 
-    if (lazy && !isMponted) {
+    if (lazy && !isMounted) {
         return null;
     }
 
@@ -78,7 +83,7 @@ export const Modal = (props: ModalProps) => {
                 <div className={cls.overlay} onClick={closeHandler}>
                     <div
                         className={cls.content}
-                        onClick={(e) => onContentClick(e)}
+                        onClick={onContentClick}
                     >
                         {children}
                     </div>
