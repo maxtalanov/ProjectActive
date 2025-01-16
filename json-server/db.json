@@ -1,12 +1,12 @@
 {
   "posts": [
     {
-      "id": 1,
+      "id": "1",
       "title": "json-server",
       "userId": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "json-server",
       "userId": 2
     }
@@ -25,5 +25,14 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "first": "Максим",
+    "lastname": "Таланов",
+    "age": 29,
+    "currency": "RUB",
+    "country": "Russia",
+    "city": "Moscow",
+    "username": "admin",
+    "avatar": "https://avatars.githubusercontent.com/u/55347015?u=0a5cab9ead249c90cdf1e6bcf0a8b2cf8e5def7f&v=4"
+  }
 }
