@@ -1,5 +1,6 @@
 import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
+import { ProfileSchema } from 'entities/Profile';
 import { LoginSchema } from 'features/AuthByUsername';
 import {
     AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject,
@@ -10,6 +11,7 @@ export interface StateSchema {
     user: UserSchema;
 
     // Асинхронные reducers
+    profile?: ProfileSchema;
     loginForm?: LoginSchema;
 }
 
