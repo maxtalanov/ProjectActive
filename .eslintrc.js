@@ -33,7 +33,7 @@ module.exports = {
         ],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
-        'no-unused-vars': 'warn',
+        'no-unused-vars': 'off',
         'react/require-default-props': 'off',
         'react/react-in-jsx-scope': 'off',
         'react/jsx-props-no-spreading': 'warn',
@@ -55,17 +55,18 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'error',
         'no-param-reassign': 'off',
+        'no-undef': 'off',
     },
     globals: {
         __IS_DEV__: true,
-        __API__: '',
+        __API__: true,
     },
     overrides: [
         {
             files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
             rules: {
                 'i18next/no-literal-string': 'off',
-                'max-len': ['error', { ignoreComments: true }],
+                'max-len': 'off',
             },
         },
     ],
