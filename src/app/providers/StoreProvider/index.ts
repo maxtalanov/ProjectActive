@@ -10,7 +10,6 @@ export {
     StoreProvider,
     createReduxStore,
     StateSchema,
-    ReduxStoreWithManager,
     AppDispatch,
     ThunkConfig,
 };

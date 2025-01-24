@@ -15,7 +15,7 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard = ({ className }: ProfileCardProps) => {
-    const { t } = useTranslation('profil');
+    const { t } = useTranslation('profile');
     const data = useSelector(getProfileData);
     const readonly = useSelector(getProfileReadonly);
     const error = useSelector(getProfileError);
