@@ -14,13 +14,11 @@
   "Войти": "Login",
   "increment": "increment",
   "decrement": "decrement",
-  "Введите username": "Enter username",
-  "Введите пароль": "Enter password",
   "Форма авторизации": "Auth form",
   "Вы ввели неверный логин или пароль": "You introduced a wrong login or password",
   "Выйти": "Log out",
-  "Ваша фамилия": "Your last name",
   "Сохранить": "Save",
-  "Укажите валюту": "Indicate the currency",
-  "Укажите страну": "Indicate the countries"
+  "Профиль": "Profile",
+  "Редактировать": "Edit",
+  "Отменить": "Cancel"
 }
