@@ -3,16 +3,20 @@ import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/component/DynamicModuleLoader/DynamicModuleLoader';
 import {
     fetchProfileData,
-    getProfileError, getProfileForm, getProfileIsLoading,
+    getProfileError,
+    getProfileForm,
+    getProfileIsLoading,
+    getProfileValidateErrors,
     profileActions,
     ProfileCard,
-    profileReducer,
+    profileReducer, ValidateProfileError,
 } from 'entities/Profile';
 import { useCallback, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country/model/types/Country';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 interface ProfilePageProps {
@@ -24,15 +28,24 @@ const reducers: ReducersList = {
 };
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
     const dispatch = useAppDispatch();
     const dataForm = useSelector(getProfileForm);
     const error = useSelector(getProfileError);
     const isLoading = useSelector(getProfileIsLoading);
+    const validateErrors = useSelector(getProfileValidateErrors);
 
     useEffect(() => {
         dispatch(fetchProfileData());
     }, [dispatch]);
+
+    const validateErrorTranslate = {
+        [ValidateProfileError.SERVER_ERROR]: t('Ошибка сервера'),
+        [ValidateProfileError.NO_DATA]: t('Данные отсутствуют'),
+        [ValidateProfileError.INCORRECT_COUNTRY]: t('Горрод обязателный'),
+        [ValidateProfileError.INCORRECT_AGE]: t('Некорректный взраст'),
+        [ValidateProfileError.INCORRECT_USER_DATA]: t('Имя и фомилия обязательны '),
+    };
 
     const onChangeLastname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ lastname: value || '' }));
@@ -75,6 +88,11 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         >
             <div className={classNames('', {}, [className])}>
                 <ProfilePageHeader />
+                {
+                    validateErrors?.length && validateErrors.map((error) => (
+                        <Text key={error} theme={TextTheme.ERROR} text={validateErrorTranslate[error]} />
+                    ))
+                }
                 <ProfileCard
                     data={dataForm}
                     isLoading={isLoading}
