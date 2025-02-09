@@ -1,10 +1,8 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import {
-    ChangeEvent, memo, useMemo,
-} from 'react';
+import { ChangeEvent, memo, useMemo } from 'react';
 import cls from './Select.module.scss';
 
-type SelectOptions = {
+export interface SelectOption {
     value: string;
     content: string;
 }
@@ -12,7 +10,7 @@ type SelectOptions = {
 interface SelectProps {
     className?: string;
     label?: string;
-    options?: SelectOptions[];
+    options?: SelectOption[];
     value?: string;
     onChange?: (value: string) => void;
     readonly?: boolean;
@@ -20,20 +18,18 @@ interface SelectProps {
 
 export const Select = memo((props: SelectProps) => {
     const {
-        label,
         className,
+        label,
         options,
-        value,
         onChange,
+        value,
         readonly,
     } = props;
 
-    const mods: Mods = {
-        [cls.readonly]: readonly,
-    };
-
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChange?.(e.target.value);
+        if (onChange) {
+            onChange(e.target.value);
+        }
     };
 
     const optionsList = useMemo(() => options?.map((opt) => (
@@ -46,24 +42,23 @@ export const Select = memo((props: SelectProps) => {
         </option>
     )), [options]);
 
+    const mods: Mods = {};
+
     return (
         <div className={classNames(cls.Wrapper, mods, [className])}>
-            {
-                label && (
-                    <span className={cls.label}>
-                        {`${label}>`}
-                    </span>
-                )
-            }
+            {label && (
+                <span className={cls.label}>
+                    {`${label}>`}
+                </span>
+            )}
             <select
+                disabled={readonly}
                 className={cls.select}
                 value={value}
                 onChange={onChangeHandler}
-                disabled={readonly}
             >
                 {optionsList}
             </select>
-
         </div>
     );
 });

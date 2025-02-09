@@ -12,8 +12,7 @@ export enum AppRoutes {
     MAIN = 'main',
     ABOUT = 'about',
     PROFILE = 'profile',
-
-    // последний
+    // last
     NOT_FOUND = 'not_found',
 }
 
@@ -39,8 +38,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <ProfilePage />,
         authOnly: true,
     },
-
-    // последний
+    // last
     [AppRoutes.NOT_FOUND]: {
         path: RoutePath.not_found,
         element: <NotFoundPage />,

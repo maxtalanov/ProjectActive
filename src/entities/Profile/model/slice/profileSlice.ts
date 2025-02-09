@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { updateProfileData } from '../service/updateProfileData/updateProfileData';
-import { fetchProfileData } from '../service/fetchProfileData/fetchProfileData';
 import { Profile, ProfileSchema } from '../types/profile';
+import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
+import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 
 const initialState: ProfileSchema = {
-    isLoading: false,
     readonly: true,
+    isLoading: false,
     error: undefined,
     data: undefined,
 };
@@ -19,8 +19,8 @@ export const profileSlice = createSlice({
         },
         cancelEdit: (state) => {
             state.readonly = true;
-            state.form = state.data;
             state.validateErrors = undefined;
+            state.form = state.data;
         },
         updateProfile: (state, action: PayloadAction<Profile>) => {
             state.form = {
@@ -35,7 +35,10 @@ export const profileSlice = createSlice({
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(fetchProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
+            .addCase(fetchProfileData.fulfilled, (
+                state,
+                action: PayloadAction<Profile>,
+            ) => {
                 state.isLoading = false;
                 state.data = action.payload;
                 state.form = action.payload;
@@ -48,7 +51,10 @@ export const profileSlice = createSlice({
                 state.validateErrors = undefined;
                 state.isLoading = true;
             })
-            .addCase(updateProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
+            .addCase(updateProfileData.fulfilled, (
+                state,
+                action: PayloadAction<Profile>,
+            ) => {
                 state.isLoading = false;
                 state.data = action.payload;
                 state.form = action.payload;
@@ -62,5 +68,6 @@ export const profileSlice = createSlice({
     },
 });
 
+// Action creators are generated for each case reducer function
 export const { actions: profileActions } = profileSlice;
 export const { reducer: profileReducer } = profileSlice;
