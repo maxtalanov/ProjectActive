@@ -10,7 +10,7 @@ const initialState: ArticleDetailsSchema = {
 };
 
 export const articleDetailsSlice = createSlice({
-    name: 'counter',
+    name: 'article',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -28,7 +28,7 @@ export const articleDetailsSlice = createSlice({
             })
             .addCase(fetchArticleById.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload;
+                state.error = action.payload || 'error';
             });
     },
 });
